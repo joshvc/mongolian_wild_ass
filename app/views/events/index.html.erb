@@ -30,6 +30,12 @@
 
 <br />
 
+<p class="bonus">
+Events in teal are "bonus events"- not exactly a road race. Obstacles, mud, or other
+unusual elements may be present, so we're not counting them among our race series-
+just an interesting event worth thinking about adding to your schedule.
+</p>
+
 <% if user_signed_in? && current_user.admin? %>
   <%= link_to 'New Event', new_event_path %>
 <% end %>
