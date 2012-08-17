@@ -17,8 +17,8 @@
     <% else %>
       <td><%= event.date %></td>
     <% end %>
-    <td><%= event.name %></td>
-    <td><%= event.distance %></td>
+    <td><%= link_to event.name, event.url, target: "_blank" %></td>
+    <td><%= event.distance %> <%= event.measure %></td>
     <td><%= link_to 'Show', event %></td>
     <% if user_signed_in? && current_user.admin? %>
       <td><%= link_to 'Edit', edit_event_path(event) %></td>
