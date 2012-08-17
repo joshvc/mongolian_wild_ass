@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Early price:</b>
+  <%= @event.early_price %>
+</p>
+
+<p>
+  <b>Early date:</b>
+  <%= @event.early_date %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Regular price:</b>
+  <%= @event.regular_price %>
+</p>
+
+<p>
+  <b>Regular date:</b>
+  <%= @event.regular_date %>
+</p>
+
+<p>
+  <b>Late price:</b>
+  <%= @event.late_price %>
+</p>
+
+<p>
+  <b>Tbd info:</b>
+  <%= @event.tbd_info %>
+</p>
+
+<p>
+  <b>Distance:</b>
+  <%= @event.distance %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
