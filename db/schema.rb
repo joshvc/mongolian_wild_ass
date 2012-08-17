@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817200702) do
+ActiveRecord::Schema.define(:version => 20120817232507) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120817200702) do
     t.float    "distance"
     t.string   "measure"
     t.boolean  "bonus"
+    t.boolean  "tentative"
   end
 
   create_table "results", :force => true do |t|

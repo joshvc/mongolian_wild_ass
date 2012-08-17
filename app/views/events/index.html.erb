@@ -7,7 +7,6 @@
     <th>Distance</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @events.each do |event| %>
@@ -15,11 +14,11 @@
     <% if event.date.blank? %>
       <td><%= event.tbd_info %></td>
     <% else %>
-      <td><%= event.date %></td>
+      <td><%= link_to event.date, event_path(event) %>
+      <%= "*" if event.tentative? %></td>
     <% end %>
     <td><%= link_to event.name, event.url, target: "_blank" %></td>
     <td><%= event.distance %> <%= event.measure %></td>
-    <td><%= link_to 'Show', event %></td>
     <% if user_signed_in? && current_user.admin? %>
       <td><%= link_to 'Edit', edit_event_path(event) %></td>
       <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,6 +34,7 @@ Events in teal are "bonus events"- not exactly a road race. Obstacles, mud, or o
 unusual elements may be present, so we're not counting them among our race series-
 just an interesting event worth thinking about adding to your schedule.
 </p>
+<p>*Tentative</p>
 
 <% if user_signed_in? && current_user.admin? %>
   <%= link_to 'New Event', new_event_path %>
