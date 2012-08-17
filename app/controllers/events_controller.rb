@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  before_filter :is_admin, only: [:new, :edit]
   def index
     @events = Event.all
 
@@ -78,6 +79,12 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
+    end
+  end
+
+  def is_admin
+    if !user_signed_in? || !current_user.admin?
+      redirect_to events_path
     end
   end
 end
