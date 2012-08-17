@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   # GET /events.json
   before_filter :is_admin, only: [:new, :edit]
   def index
-    @events = Event.all
+    @events = Event.order('date')
 
     respond_to do |format|
       format.html # index.html.erb
