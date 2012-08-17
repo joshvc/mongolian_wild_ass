@@ -68,12 +68,14 @@
             </div>
             <div class="span3">
               <div class="well sidebar-nav">
-                <h3>Nothing Here</h3>
+                <h3>Next Event</h3>
                 <ul class="nav nav-list">
-                  <li class="nav-header">Nope</li>
-                  <li><%= link_to "Link1", "#"  %></li>
-                  <li><%= link_to "Link2", "#"  %></li>
-                  <li><%= link_to "Link3", "#"  %></li>
+                  <li><%= link_to next_event.name, event_path(next_event) %></li>
+                  <li><%= next_event.date %></li>
+                  <li><%= next_event.location %></li>
+                  <li><%= link_to next_event.url do %>
+                  Early Entry: <%= next_event.early_date %>
+                  <% end %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
