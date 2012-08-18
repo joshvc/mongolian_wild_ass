@@ -1,8 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+<h2>
   <%= @event.name %>
+</h2>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
 </p>
 
 <p>
@@ -11,45 +20,39 @@
 </p>
 
 <p>
-  <b>Early price:</b>
-  <%= @event.early_price %>
+  <b>Distance:</b>
+  <%= @event.distance %> <%= @event.measure %>
 </p>
 
 <p>
-  <b>Early date:</b>
+  <b>Early price:</b>
+  $<%= @event.early_price %>
+</p>
+
+<p>
+  <b>Early Registration Deadline:</b>
   <%= @event.early_date %>
 </p>
 
-<p>
-  <b>Date:</b>
-  <%= @event.date %>
-</p>
 
 <p>
   <b>Regular price:</b>
-  <%= @event.regular_price %>
+  $<%= @event.regular_price %>
 </p>
 
 <p>
-  <b>Regular date:</b>
+  <b>Regular Entry Deadline:</b>
   <%= @event.regular_date %>
 </p>
 
 <p>
-  <b>Late price:</b>
-  <%= @event.late_price %>
-</p>
-
-<p>
-  <b>Tbd info:</b>
-  <%= @event.tbd_info %>
-</p>
-
-<p>
-  <b>Distance:</b>
-  <%= @event.distance %>
+  <b>Late Registration Price:</b>
+  $<%= @event.late_price %>
 </p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+<% end %>
 <%= link_to 'Back', events_path %>
