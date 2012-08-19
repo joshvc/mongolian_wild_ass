@@ -1,0 +1,16 @@
+<h1><%= @user.name %></h1>
+<p><%= @user.title %></p>
+
+<h3>Bio</h3>
+<%= @user.bio %>
+
+<h4>5k Goal: <%= @user.fivek_goal_mm %>:<%= @user.fivek_goal_ss %></h4>
+
+<% unless @user.events.previous.blank? %>
+  <h2>Previous Events</h2>
+  <%= render partial: 'events/list', locals: {events: @user.events.previous} %>
+<% end %>
+
+<h2>Upcoming Events</h2>
+<%= render partial: 'events/list', locals: {events: @user.events.upcoming} %>
+

@@ -1,4 +1,6 @@
 MongolianWildAss::Application.routes.draw do
+  devise_for :users
+
   resources :events do
     resources :results
   end
@@ -8,7 +10,6 @@ MongolianWildAss::Application.routes.draw do
     resources :results
   end
 
-  devise_for :users
 
   root to: 'events#index'
 

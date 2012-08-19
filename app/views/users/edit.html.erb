@@ -1,0 +1,15 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :title, label: "Title/Tagline/Quote/Something" %>
+    <%= f.input :bio %>
+    <%= f.input :fivek_goal_mm, label: "5k Goal Minutes" %>
+    <%= f.input :fivek_goal_ss, label: "5k Goal Seconds" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

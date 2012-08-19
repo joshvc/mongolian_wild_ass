@@ -1,0 +1,40 @@
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Distance</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% events.each do |event| %>
+    <tr <%= "class=bonus" if event.bonus? %>>
+      <% if event.date.blank? %>
+        <td><%= event.tbd_info %></td>
+      <% else %>
+        <td><%= link_to event.date, event_path(event) %>
+        <%= "*" if event.tentative? %></td>
+    <% end %>
+    <td><%= link_to event.name, event.url, target: "_blank" %></td>
+    <td><%= event.distance %> <%= event.measure %></td>
+    <% if user_signed_in? %>
+      <% if current_user.events.include?(event) %>
+        <td><%= link_to "You're Going!", event_path(event) %>
+      <% elsif event.date < 30.days.from_now.to_date %>
+        <td><%= form_for @result do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :event_id, value: event.id %>
+          <%= f.submit 'Add to My Events' %>
+        <% end %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? && current_user.admin? %>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+</tr>
+<% end %>
+</table>

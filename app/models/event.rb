@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
 
   scope :upcoming, where('date > ?', Time.now)
   scope :non_bonus, where('bonus IS NOT true')
+  scope :previous, where('date < ?', Time.now).order('date')
 
   def self.next
     self.upcoming.non_bonus.order('date').first

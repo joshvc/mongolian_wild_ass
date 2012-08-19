@@ -8,4 +8,12 @@ class ResultsController < ApplicationController
       redirect_to event_path(@result.event)
     end
   end
+
+  def show
+
+  end
+
+  def edit
+      @result = Result.find(params[:id])
+  end
 end
