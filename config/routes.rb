@@ -1,5 +1,12 @@
 MongolianWildAss::Application.routes.draw do
-  resources :events
+  resources :events do
+    resources :results
+  end
+  resources :results
+  resources :users do
+    resources :events, controller: 'users/events'
+    resources :results
+  end
 
   devise_for :users
 
