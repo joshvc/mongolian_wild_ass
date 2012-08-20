@@ -11,6 +11,5 @@ class Result < ActiveRecord::Base
   def total_times
     self.chip_time = chip_mm * 60 + chip_ss
     self.gun_time = gun_mm * 60 + gun_ss
-    binding.pry
   end
 end

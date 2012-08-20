@@ -3,6 +3,7 @@
     <th>Date</th>
     <th>Name</th>
     <th>Distance</th>
+    <th>Location</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,18 +15,29 @@
         <td><%= event.tbd_info %></td>
       <% else %>
         <td><%= link_to event.date, event_path(event) %>
-        <%= "*" if event.tentative? %></td>
+        <%= "*" if event.tentative? %>
+        <% if event.results.count >= User.count / 2 %>
+          <i class="icon-fire"></i>
+        <% end %>
+      </td>
     <% end %>
     <td><%= link_to event.name, event.url, target: "_blank" %></td>
+    <td><%= event.location %>
     <td><%= event.distance %> <%= event.measure %></td>
     <% if user_signed_in? %>
-      <% if current_user.events.include?(event) %>
+      <% if event.date < Time.now.to_date && current_user.events.include?(event) %>
+        <% if !event.result(current_user).chip_time.nil? %>
+          <td><%= event.result(current_user).chip_mm %>:<%= event.result(current_user).chip_ss %></td>
+        <% else %>
+          <td><%= link_to "Add Results", edit_result_path(event.result(current_user)), class: "btn btn-primary btn-mini" %>
+        <% end %>
+      <% elsif current_user.events.include?(event) %>
         <td><%= link_to "You're Going!", event_path(event) %>
       <% elsif event.date < 30.days.from_now.to_date %>
         <td><%= form_for @result do |f| %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :event_id, value: event.id %>
-          <%= f.submit 'Add to My Events' %>
+          <%= f.submit 'Add to My Events', class: "btn btn-primary btn-mini" %>
         <% end %></td>
     <% else %>
       <td></td>

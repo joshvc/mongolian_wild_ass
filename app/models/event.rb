@@ -13,4 +13,8 @@ class Event < ActiveRecord::Base
   def self.next
     self.upcoming.non_bonus.order('date').first
   end
+
+  def result(user)
+    self.results.find_by_user_id(user.id)
+  end
 end
