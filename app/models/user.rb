@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :results
   has_many :events, through: :results
+
+  def result(event)
+    self.results.find_by_event_id(event.id)
+  end
 end

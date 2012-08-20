@@ -1,0 +1,12 @@
+<%= simple_form_for @result do |f| %>
+  <%= f.input :gun_mm, label: "Gun Time Minutes" %>
+  <%= f.input :gun_ss, label: "Gun Time Seconds" %>
+  <%= f.input :chip_mm, label: "Chip Time Minutes" %>
+  <%= f.input :chip_ss, label: "Chip Time Seconds" %>
+  <%= f.input :notes, label: "Notes (Private)" %>
+  <%= f.input :race_again, label: "Would You Enter This Race Again?" %>
+  <%= f.input :survey, label: "Comments About the Race" %>
+  <%= f.submit %>
+
+
+<% end %>

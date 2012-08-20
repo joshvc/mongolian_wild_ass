@@ -1,0 +1,26 @@
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Distance</th>
+    <th>Chip Time</th>
+    <th>Gun Time</th>
+    <th>Place</th>
+    <th>Age Group Place</th>
+  </tr>
+
+  <% @results.each do |result| %>
+    <% if result.event.date < Time.now.to_date %>
+      <tr <%= "class=bonus" if result.event.bonus? %>>
+        <td><%= link_to result.event.date, event_path(result.event) %>
+        <td><%= link_to result.event.name, result.event.url, target: "_blank" %></td>
+        <td><%= result.event.distance %> <%= result.event.measure %></td>
+        <td><%= result.chip_mm %>:<%= result.chip_ss %></td>
+        <td><%= result.gun_mm %>:<%= result.gun_ss %></td>
+        <td><%= result.place %></td>
+        <td><%= result.age_place %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>

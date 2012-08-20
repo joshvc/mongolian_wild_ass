@@ -14,6 +14,19 @@ class ResultsController < ApplicationController
   end
 
   def edit
-      @result = Result.find(params[:id])
+    @result = Result.find(params[:id])
+  end
+
+  def index
+    @user = User.find(params[:user_id])
+    @results = @user.results.sort_by{|r|r.event.date}
+  end
+
+  def update
+    @result = Result.find(params[:id])
+    if @result.update_attributes(params[:result])
+      flash[:success] = "Result Logged"
+      redirect_to user_results_path(@result.user)
+    end
   end
 end
