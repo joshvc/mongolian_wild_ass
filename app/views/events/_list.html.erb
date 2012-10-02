@@ -2,8 +2,8 @@
   <tr>
     <th>Date</th>
     <th>Name</th>
-    <th>Distance</th>
     <th>Location</th>
+    <th>Distance</th>
     <th></th>
     <th></th>
     <th></th>
@@ -27,7 +27,7 @@
     <% if user_signed_in? %>
       <% if event.date < Time.now.to_date && current_user.events.include?(event) %>
         <% if !event.result(current_user).chip_time.nil? %>
-          <td><%= event.result(current_user).chip_mm %>:<%= event.result(current_user).chip_ss %></td>
+          <td><%= link_to "#{event.result(current_user).chip_mm}:#{event.result(current_user).chip_ss}", edit_result_path(event.result(current_user)) %></td>
         <% else %>
           <td><%= link_to "Add Results", edit_result_path(event.result(current_user)), class: "btn btn-primary btn-mini" %>
         <% end %>

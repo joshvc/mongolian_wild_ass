@@ -56,3 +56,16 @@
   <%= link_to 'Edit', edit_event_path(@event) %> |
 <% end %>
 <%= link_to 'Back', events_path %>
+<% if user_signed_in? %>  
+  <br />
+  <% if current_user.events.include?(@event) %>
+    <%= link_to "I'm Not Going", result_path(@event.result(current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% elsif @event.date < 30.days.from_now.to_date %>
+    <%= form_for @result do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+      <%= f.submit 'Add to My Events', class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>
+  

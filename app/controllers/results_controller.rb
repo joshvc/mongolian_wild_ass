@@ -29,4 +29,12 @@ class ResultsController < ApplicationController
       redirect_to user_results_path(@result.user)
     end
   end
+
+  def destroy
+    @result = Result.find(params[:id])
+    @result.destroy
+    flash[:notice] = "You are no longer going to this race"
+    redirect_to events_path
+
+  end
 end
