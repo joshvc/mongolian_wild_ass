@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user, on: [:edit]
+  before_filter :authenticate_user, only: [:edit]
 
   def index
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def authenticate_user
     if !user_signed_in?
       redirect_to users_path
-    elsif current_user.id != params[:id].to_i && !current_user.admin?
+    elsif current_user.id != params[:id].to_i
       redirect_to edit_user_path(current_user)
     end
 

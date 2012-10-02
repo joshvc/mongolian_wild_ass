@@ -1,4 +1,9 @@
-<h1><%= @user.name %></h1>
+<% if user_signed_in? && @user == current_user %>  
+  <h1><%= link_to @user.name, edit_user_path(current_user) %></h1>
+<% else %>
+  <h1><%= @user.name %></h1>
+<% end %>
+
 <p><%= @user.title %></p>
 
 <h3>Bio</h3>
